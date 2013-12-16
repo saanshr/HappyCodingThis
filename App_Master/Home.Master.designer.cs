@@ -22,6 +22,15 @@ namespace HappyCodingThis.SitefinityWebApp.App_Master {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ResourceLinks1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Sitefinity.Web.UI.ResourceLinks ResourceLinks1;
+        
+        /// <summary>
         /// LogoContentPlaceHolder control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace HappyCodingThis.SitefinityWebApp.App_Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder BannerContentPlaceHolder;
+        
+        /// <summary>
+        /// CalloutContentPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder CalloutContentPlaceHolder;
         
         /// <summary>
         /// MainContentPlaceHolder control.

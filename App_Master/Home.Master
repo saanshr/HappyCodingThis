@@ -12,6 +12,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
+	      <sf:ResourceLinks ID="ResourceLinks1" runat="server">
+		  <sf:ResourceFile JavaScriptLibrary="JQuery" />
+		  <sf:ResourceFile JavaScriptLibrary="KendoAll" />
+	   </sf:ResourceLinks>
 	   <div class="btm_border">
 		  <div class="h_bg">
 			 <div class="wrap">
@@ -50,33 +54,13 @@
 			 <!------ Slider------------>
 			 <div class="slider">
 				<div class="slider-wrapper theme-default">
-				    <div id="slider" class="nivoSlider">
+				    <div id="slider">
 					   <asp:ContentPlaceHolder runat="server" ID="BannerContentPlaceHolder" />
-					   <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/banner1.jpg" data-thumb="images/1.jpg" alt="" />
-					   <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/banner2.jpg" data-thumb="images/2.jpg" alt="" />
-					   <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/banner3.jpg" data-thumb="images/3.jpg" alt="" />
 				    </div>
 				</div>
 			 </div>
 			 <!------End Slider ------------>
-			 <div class="grids_1_of_3">
-				<div class="grid_1_of_3 images_1_of_3">
-				    <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/icon1.jpg">
-				    <h3>Lorem Ipsum is simply</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
-				</div>
-				<div class="grid_1_of_3 images_1_of_3">
-				    <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/icon2.jpg">
-				    <h3>Lorem Ipsum is simply</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
-				</div>
-				<div class="grid_1_of_3 images_1_of_3">
-				    <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/icon3.jpg">
-				    <h3>Lorem Ipsum is simply</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
-				</div>
-				<div class="clear"></div>
-			 </div>
+			 <asp:ContentPlaceHolder runat="server" ID="CalloutContentPlaceHolder" />
 		  </div>
 	   </div>
 	   <!--main-->
@@ -85,13 +69,6 @@
 			 <div class="main">
 				<div class="content">
 				    <asp:ContentPlaceHolder runat="server" ID="MainContentPlaceHolder" />
-				    <h2>what our customer says</h2>
-				    <h3>Lorem ipsum dolor sit amet, consectetur adipisicing</h3>
-				    <p>
-					   <a href="details.html">
-						  <img src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/images/pic1.jpg"></a> Cadipisicing elit,Nam ornare vulputate risus,id volutpat elit porttitor non.In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. PellentesqueNam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas Pellentesque habitant morbi tristique senectus et netus et malesuada fames. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Nam ornare vulputate risus,id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non.
-				    </p>
-				    <div class="clear"></div>
 				</div>
 			 </div>
 		  </div>
@@ -141,7 +118,7 @@
 				    <div class="box1">
 					   <h4 class="btm">Categories</h4>
 					   <nav>
-						 <asp:ContentPlaceHolder runat="server" ID="FooterNavContentPlaceHolder" />
+						  <asp:ContentPlaceHolder runat="server" ID="FooterNavContentPlaceHolder" />
 					   </nav>
 				    </div>
 				    <div class="box1">
@@ -172,15 +149,22 @@
 			 </div>
 		  </div>
 	   </div>
-	   <script src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/JS/jquery-1.9.0.min.js"></script>
 	   <script src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/JS/lightbox-2.6.min.js"></script>
-	   <script src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/JS/jquery.nivo.slider.js"></script>
+	   <script src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/JS/jquery.cycle2.min.js"></script>
 	   <script src="/Sitefinity/WebsiteTemplates/Default/App_Themes/Default/JS/main.js"></script>
-	   <script type="text/javascript">
-	       $(window).load(function () {
-	           $('#slider').nivoSlider();
-	       });
-    </script>
+	   <div runat="server">
+		  <script type="text/javascript">
+			 var isBackend = "<%= Page.IsDesignMode() %>";
+		      $(window).load(function () {
+		          if(isBackend == "False"){
+		              //$('#slider').cycle({
+		              //    speed: 600,
+		              //    manualSpeed: 100
+		              //});
+				}
+		      });
+		  </script>
+	   </div>
     </form>
 </body>
 </html>

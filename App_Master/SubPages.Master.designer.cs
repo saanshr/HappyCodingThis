@@ -13,15 +13,6 @@ namespace HappyCodingThis.SitefinityWebApp.App_Master {
     public partial class SubPages {
         
         /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -58,21 +49,21 @@ namespace HappyCodingThis.SitefinityWebApp.App_Master {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder SearchBoxContentHolder;
         
         /// <summary>
-        /// FooterNavContentPlaceHolder control.
+        /// MainContentPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder FooterNavContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContentPlaceHolder;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// FooterContentPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder FooterContentPlaceHolder;
     }
 }
