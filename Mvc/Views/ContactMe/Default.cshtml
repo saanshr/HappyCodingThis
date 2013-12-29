@@ -1,5 +1,9 @@
+@using Telerik.Sitefinity.UI.MVC
 @model HappyCodingThis.SitefinityWebApp.Mvc.Models.ContactMeModel
 
-<h1>
-    
-</h1>
+@Html.BeginFormSitefinity(){
+    @Html.TextBoxFor(m => m.FirstName)
+    @Html.TextBoxFor(m => m.LastName)
+    @Html.EditorFor(m => m.Email)
+    @Html.TextAreaFor(m => m.CommentQuestion)
+}

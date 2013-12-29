@@ -17,5 +17,11 @@ namespace HappyCodingThis.SitefinityWebApp.Mvc.Controllers
 
             return View("Default");
         }
+	   
+	   [HttpPost]
+	   public ActionResult Index(ContactMeModel model)
+	   {
+		  return View("ThankYou");
+	   }
     }
 }
