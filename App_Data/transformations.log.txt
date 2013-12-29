@@ -1,0 +1,10 @@
+12/29/2013 10:10:57 AM
+Transformation file version: 6300000 
+
+Executing Remove (transform line 11, 16)
+on /configuration/system.serviceModel/services/service[@name='SitefinityWebApp.Authenticate']
+Applying to 'service' element (no source line info)
+Removed 'service' element
+Done executing Remove
+
+

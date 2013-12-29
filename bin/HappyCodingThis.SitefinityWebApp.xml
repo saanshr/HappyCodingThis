@@ -139,7 +139,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="T:HappyCodingThis.SitefinityWebApp.AzureWebRole">
+        <member name="T:SitefinityWebApp.AzureWebRole">
             <summary>
             Sitefinity's Windows Azure role entry point.
             </summary>
@@ -147,6 +147,26 @@
             Windows Azure looks for RoleEntryPoint inheritors only in the web role assembly and that is why this class is defined here.
             The functionality goes into the base class - <see cref="T:Telerik.Sitefinity.Cloud.WindowsAzure.AzureWebRoleBase"/>.
             </remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:HappyCodingThis.SitefinityWebApp.Custom.Contact" -->
+        <member name="M:HappyCodingThis.SitefinityWebApp.Custom.Contact.InitializeControls(Telerik.Sitefinity.Web.UI.GenericContainer)">
+            <summary>
+            Initializes the controls.
+            </summary>
+            <param name="container"></param>
+            <remarks>
+            Initialize your controls in this method. Do not override CreateChildControls method.
+            </remarks>
+        </member>
+        <member name="P:HappyCodingThis.SitefinityWebApp.Custom.Contact.LayoutTemplateName">
+            <summary>
+            Obsolete. Use LayoutTemplatePath instead.
+            </summary>
+        </member>
+        <member name="P:HappyCodingThis.SitefinityWebApp.Custom.Contact.LayoutTemplatePath">
+            <summary>
+            Gets the layout template's relative or virtual path.
+            </summary>
         </member>
     </members>
 </doc>
