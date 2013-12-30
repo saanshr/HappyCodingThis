@@ -88,6 +88,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="LinqToTwitter, Version=2.1.8.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\LinqToTwitter.dll</HintPath>
@@ -207,6 +210,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -216,6 +220,7 @@
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.ServiceModel.Channels" />
@@ -644,6 +649,24 @@
     </Compile>
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="Custom\Contact.cs" />
+    <Compile Include="Custom\ContactForm.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactForm.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\ContactForm.cs">
+      <DependentUpon>ContactForm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\ContactForm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactForm.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\ContactForm1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactForm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -786,8 +809,28 @@
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Custom\ContactForm.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ContactForm.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Custom\ContactForm.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactForm.edmx</DependentUpon>
+      <LastGenOutput>ContactForm.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Custom\ContactForm.edmx.diagram">
+      <DependentUpon>ContactForm.edmx</DependentUpon>
+    </Content>
+    <Content Include="Custom\ContactForm.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactForm.edmx</DependentUpon>
+      <LastGenOutput>ContactForm1.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\happycodingthis.com - Web Deploy.pubxml" />
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

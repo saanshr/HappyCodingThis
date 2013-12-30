@@ -2,6 +2,12 @@
 using System.Linq;
 using System.Web.UI.WebControls;
 using Telerik.Sitefinity.Web.UI;
+using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Configuration;
+using System.Net.Mail;
+using Telerik.Microsoft.Practices.EnterpriseLibrary.Logging;
+using System.Net;
+using System.Text;
 
 namespace HappyCodingThis.SitefinityWebApp.Custom
 {
@@ -69,7 +75,7 @@ namespace HappyCodingThis.SitefinityWebApp.Custom
 			 return this.Container.GetControl<TextBox>("FirstName", true);
 		  }
 	   }
-
+	   
 	   protected virtual TextBox LastName
 	   {
 		  get
@@ -85,7 +91,7 @@ namespace HappyCodingThis.SitefinityWebApp.Custom
 			 return this.Container.GetControl<TextBox>("Email", true);
 		  }
 	   }
-
+	   
 	   protected virtual TextBox Company
 	   {
 		  get
@@ -93,15 +99,15 @@ namespace HappyCodingThis.SitefinityWebApp.Custom
 			 return this.Container.GetControl<TextBox>("Company", true);
 		  }
 	   }
-
+	   
 	   protected virtual TextBox Question
 	   {
 		  get
 		  {
-			 return this.Container.GetControl<TextBox>("FirstName", true);
+			 return this.Container.GetControl<TextBox>("Question", true);
 		  }
 	   }
-
+	   
 	   protected virtual Button Sumbit
 	   {
 		  get
@@ -110,6 +116,22 @@ namespace HappyCodingThis.SitefinityWebApp.Custom
 		  }
 	   }
 
+	   protected virtual Literal Message
+	   {
+		  get
+		  {
+			 return this.Container.GetControl<Literal>("Message", true);
+		  }
+	   }
+
+	   protected virtual Panel ContactFormPanel
+	   {
+		  get
+		  {
+			 return this.Container.GetControl<Panel>("ContactFormPanel", true);
+		  }
+	   }
+	   
 	   #endregion
 	   
 	   #region Methods
@@ -123,23 +145,73 @@ namespace HappyCodingThis.SitefinityWebApp.Custom
 	   /// </remarks>
 	   protected override void InitializeControls(GenericContainer container)
 	   {
-		  Sumbit.Click += Submit_Click;
+
+			 Sumbit.Click += Submit_Click;
+
 	   }
 	   
 	   protected void Submit_Click(object sender, EventArgs e)
 	   {
 		  if (this.Page.IsPostBack && this.Page.IsValid)
 		  {
-			 var fn = FirstName.Text;
+			 string host = Config.Get<SystemConfig>().SmtpSettings.Host;
+			 int port = Config.Get<SystemConfig>().SmtpSettings.Port;
+			 string address = Config.Get<SystemConfig>().SmtpSettings.DefaultSenderEmailAddress;
+			 string username = Config.Get<SystemConfig>().SmtpSettings.UserName;
+			 string psw = Config.Get<SystemConfig>().SmtpSettings.Password;
+			 bool enableSSL = Config.Get<SystemConfig>().SmtpSettings.EnableSSL;
+			 
+			 ContactForm contactForm = new ContactForm();
+			 contactForm.ID = Guid.NewGuid();
+			 contactForm.FirstName = this.FirstName.Text;
+			 contactForm.LastName = this.LastName.Text;
+			 contactForm.Email = this.Email.Text;
+			 contactForm.Company = this.Company.Text;
+			 contactForm.Questions = this.Question.Text;
+
+			 StringBuilder body = new StringBuilder();
+			 body.Append("<h1>New Contact Form</h1>");
+			 body.AppendFormat("{0}<br />", DateTime.Now);
+			 body.AppendFormat("<b>Name: </b> {0} {1}<br />", contactForm.FirstName, contactForm.LastName);
+			 body.AppendFormat("<b>Email: </b> {0}<br />", contactForm.Email);
+			 body.AppendFormat("<b>Company: </b> {0} <br />", contactForm.Company);
+			 body.AppendFormat("<b>Questions/Comments</b><br />{0}", contactForm.Questions);
+
+			 using (happyCodingThisEntities context = new happyCodingThisEntities())
+			 {
+				context.ContactForms.Add(contactForm);
+				context.SaveChanges();
+			 }
+			 
+			 try
+			 {
+				SmtpClient smtp = new SmtpClient(host,port);
+				smtp.Credentials = new System.Net.NetworkCredential(username,psw);
+				smtp.EnableSsl = enableSSL;
+				var message = new MailMessage(address, address)
+				{
+				    Subject = "New Contact Form",
+				    Body = body.ToString(),
+				    IsBodyHtml = true
+				};
+				smtp.Send(message);
+				ContactFormPanel.Visible = false;
+				this.Message.Text = string.Format("<div class='message'>Thanks {0} for contacting <span>Happy Coding this</span>.  We will respond to your request as soon as possible.</div>", contactForm.FirstName);
+			 }
+			 catch (Exception ex)
+			 {
+				Logger.Write(ex.Message);
+				this.Message.Text = "There was an error. Please contact <a href='mailto:admin@happycodingthis.com'>admin@happycodingthis.com</a>";
+			 }
 		  }
 	   }
 	   
 	   #endregion
 	   
 	   #region Private members & constants
-
+	   
 	   public static readonly string layoutTemplatePath = "~/Custom/Contact.ascx";
-
+    
 	   #endregion
     }
 }
