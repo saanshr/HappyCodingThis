@@ -85,12 +85,12 @@ namespace HappyCodingThis.SitefinityWebApp.App_Master {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContentPlaceHolder;
         
         /// <summary>
-        /// FooterNavContentPlaceHolder control.
+        /// FooterContentPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder FooterNavContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder FooterContentPlaceHolder;
     }
 }
